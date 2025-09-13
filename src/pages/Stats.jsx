@@ -1,6 +1,6 @@
 import React from "react";
 import {useLocation, useParams, Link} from "react-router-dom";
-import {Card, Typography, Space, Button, Statistic} from "antd";
+import { Card, Typography, Space, Button, Statistic } from "antd";
 import {useHelpers} from "../helpers-context.js";
 
 

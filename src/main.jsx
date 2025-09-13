@@ -1,11 +1,11 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router.dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 import Create from "./pages/Create.jsx";
 import Viewer from "./pages/Viewer.jsx";
-import Stats from "/.pages/Stats.jsx";
+import Stats from "./pages/Stats.jsx";
 import App from "./App.jsx";
 import { HelpersContext } from "./helpers-context.js";
 
