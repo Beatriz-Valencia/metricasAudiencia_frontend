@@ -10,8 +10,9 @@ import App from "./App.jsx";
 import { HelpersContext } from "./helpers-context.js";
 
 //Presentación con duración
-function generateSimpleDeck(durationMs = 20000) {
-  return { durationMs: Math.max(durationMs, 3000) }; //duración mínima 3 seg
+function generateSimpleDeck(title, durationMs = 20000) {
+  const product = title?.trim() || "Tu presentación"; //verifica que title no es null ni undefined y elimina espacios en blanco
+  return { title: product, durationMs: Math.max(durationMs, 3000) }; //duración mínima 3 seg
 }
 
 //Codificación de la presentación para convertira string para URL
