@@ -1,3 +1,4 @@
+import '@ant-design/v5-patch-for-react-19';
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -90,7 +91,6 @@ function encodeDeck(deck) {
         <HelpersContext.Provider value={helpers}>
           <BrowserRouter>
             <Routes>
-              <Route element={<App />}>
                 <Route
                   path="/"
                   element={
@@ -115,7 +115,6 @@ function encodeDeck(deck) {
                     </App>
                   }
                 />
-              </Route>
             </Routes>
           </BrowserRouter>
         </HelpersContext.Provider>

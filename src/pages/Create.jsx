@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {Card, Typography, Input, Space, Button, message} from "antd";
 import {RocketOutlined} from "@ant-design/icons";
@@ -10,17 +10,15 @@ export default function Create() {
     const [ms, setMs] = useState(20000);
     const nav = useNavigate();
 
-}
-
 function onPublish(){
-    const deck = generateSimpleDeck(durationMs || 20000);
+    const deck = generateSimpleDeck(text, ms);
     const d = encodeDeck(deck)
     const id = crypto.randomUUID(); //usa API nativa del navegador. Llama a randomUUID(), que genera un identificador único aleatorio
     message.success("Presentación generada");
     nav(`/v/${id}?d=${encodeURIComponent(d)}`); //redirige navegación a una ruta que incluye el UUID generado com oparte de la URL.
     //añade una query param d, con el contenido de d, codificado encodeURIComponent para que sea seguro en URL aunque contenga espacios, comillas
   
-
+}
 
 return (
     <Card>
@@ -37,8 +35,8 @@ return (
                 onChange={(e)=>setText(e.target.value)}
                 />
             <Space.Compact>
-            <Button type="primery" className="lime" icon={<RocketOutlined/>} on Click={onPublish}>
-            Pubklicar y abrir
+            <Button type="primary" className="lime" icon={<RocketOutlined/>} onClick={onPublish}>
+            Publicar y abrir
             </Button>
             </Space.Compact>
         </Space>

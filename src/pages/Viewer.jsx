@@ -17,7 +17,7 @@ export default function Viewer(){
     //Estados de reproducción
     const [playing, setPlaying] =useState(false);
     const [paused, setPaused] = useState(false);
-    cont [ended, setEnded] = useState(false);
+    const [ended, setEnded] = useState(false);
 
     //control de tiempo: timeout y contador
     const remainingRef =useRef(durationMs); //controla tiempo restante
