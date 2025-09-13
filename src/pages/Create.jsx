@@ -20,7 +20,7 @@ function onPublish(){
     nav(`/v/${id}?d=${encodeURIComponent(d)}`); //redirige navegación a una ruta que incluye el UUID generado com oparte de la URL.
     //añade una query param d, con el contenido de d, codificado encodeURIComponent para que sea seguro en URL aunque contenga espacios, comillas
   
-}
+
 
 return (
     <Card>
@@ -44,3 +44,4 @@ return (
         </Space>
     </Card>
 )
+}

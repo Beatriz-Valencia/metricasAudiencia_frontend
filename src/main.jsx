@@ -2,7 +2,8 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-
+import 'antd/dist/reset.css';
+import { StrictMode } from "react";
 import Create from "./pages/Create.jsx";
 import Viewer from "./pages/Viewer.jsx";
 import Stats from "./pages/Stats.jsx";
@@ -12,8 +13,9 @@ import { HelpersContext } from "./helpers-context.js";
 //Presentación con duración
 function generateSimpleDeck(title, durationMs = 20000) {
   const product = title?.trim() || "Tu presentación"; //verifica que title no es null ni undefined y elimina espacios en blanco
-  return { title: product, durationMs: Math.max(durationMs, 3000) }; //duración mínima 3 seg
-}
+  return { title: product, durationMs: Math.max(durationMs, 3000) }
+}; //duración mínima 3 seg
+
 
 //Codificación de la presentación para convertira string para URL
 function encodeDeck(deck) {
@@ -21,7 +23,8 @@ function encodeDeck(deck) {
   const json = JSON.stringify(deck); //convierte a JSON
   const bytes = new TextEncoder().encode(json); //TextEncoder transforma el string en su representación binaria
   const bin = String.fromCharCode(...bytes); //convierte cada byte en un caracter
-  return btoa(bi); //codifica el string binario a Base 64 y lo devuelve, creando cadena ASCII segura para URLs.
+  return btoa(bin)
+}; //codifica el string binario a Base 64 y lo devuelve, creando cadena ASCII segura para URLs.
 
   function decodeDeckParam(b64) {
     //La función recibe una cadena Base 64
@@ -33,6 +36,7 @@ function encodeDeck(deck) {
     } catch {
       return null; // si falla, devuelve null
     }
+  }
 
     // Métricas mínimas en localStorage por presentación
     const KEY = "metricasAudiencia.simple.metrics";
@@ -104,7 +108,7 @@ function encodeDeck(deck) {
                   }
                 />
                 <Route
-                  path="/stats/ïd"
+                  path="/stats/:id"
                   element={
                     <App>
                       <Stats />
@@ -117,5 +121,3 @@ function encodeDeck(deck) {
         </HelpersContext.Provider>
       </StrictMode>
     );
-  }
-}

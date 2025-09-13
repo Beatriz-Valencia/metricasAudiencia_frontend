@@ -1,7 +1,7 @@
 import React,  {useEffect, useRef, useState} from "react"; //usamos useRef para referencias mutables como tiempo restante, timeout
 import {useLocation, useParams, Link, useNavigate} from "react-router-dom"; //useLocation lee params de ruta id
 import {Space, Button} from "antd";
-import { PlayCircleOutlined, PauseCircleOutlined, StopOUtlined, BarChartOutlined } from "@ant-design/icons";
+import { PlayCircleOutlined, PauseCircleOutlined, StopOutlined, BarChartOutlined } from "@ant-design/icons";
 import PlayerCard from "../components/PlayerCard.jsx";
 import {useHelpers} from "../helpers-context.js"; //Hook propio que expone utilidades como decodificar y contar eventos
 
