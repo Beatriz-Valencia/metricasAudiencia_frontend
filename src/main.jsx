@@ -11,11 +11,16 @@ import Stats from "./pages/Stats.jsx";
 import App from "./App.jsx";
 import { HelpersContext } from "./helpers-context.js";
 
-//Presentación con duración
-function generateSimpleDeck(title, durationMs = 20000) {
+//Presentación
+
+async function buildDeckFromTitle(title, durationMs = 20000, count = 6) {
   const product = title?.trim() || "Tu presentación"; //verifica que title no es null ni undefined y elimina espacios en blanco
-  return { title: product, durationMs: Math.max(durationMs, 3000) }
-}; //duración mínima 3 seg
+  const slides = Array.from({ length: count }, (_, i) => ({
+    url: `https://source.unsplash.com/1600x900/?${encodeURIComponent(product)}&sig=${i}`,
+    caption: product
+  }));
+  return { title: product, durationMs: Math.max(durationMs, 3000), slides };//duración mínima 3 seg
+}
 
 
 //Codificación de la presentación para convertira string para URL
@@ -84,6 +89,7 @@ function encodeDeck(deck) {
       incPause,
       incStop,
       getMetrics,
+      buildDeckFromTitle,  
     };
 
     createRoot(document.getElementById("root")).render(
