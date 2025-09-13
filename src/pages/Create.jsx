@@ -5,13 +5,13 @@ import {RocketOutlined} from "@ant-design/icons";
 import {useHelpers} from "../helpers-context.js";
 
 export default function Create() {
-    const {generateSimpleDeck, encodeDeck} =useHelpers();
+    const { buildDeckFromTitle, encodeDeck} =useHelpers();
     const [text, setText] = useState("");
     const [ms, setMs] = useState(20000);
     const nav = useNavigate();
 
-function onPublish(){
-    const deck = generateSimpleDeck(text, ms);
+async function onPublish(){
+    const deck = await buildDeckFromTitle(text, ms);
     const d = encodeDeck(deck)
     const id = crypto.randomUUID(); //usa API nativa del navegador. Llama a randomUUID(), que genera un identificador único aleatorio
     message.success("Presentación generada");

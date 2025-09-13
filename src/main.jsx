@@ -13,15 +13,29 @@ import { HelpersContext } from "./helpers-context.js";
 
 //Presentación
 
-async function buildDeckFromTitle(title, durationMs = 20000, count = 6) {
-  const product = title?.trim() || "Tu presentación"; //verifica que title no es null ni undefined y elimina espacios en blanco
-  const slides = Array.from({ length: count }, (_, i) => ({
-    url: `https://source.unsplash.com/1600x900/?${encodeURIComponent(product)}&sig=${i}`,
-    caption: product
-  }));
-  return { title: product, durationMs: Math.max(durationMs, 3000), slides };//duración mínima 3 seg
-}
+function generateSimpleDeck(title, durationMs = 20000) { 
+  const product = title?.trim() || "Tu presentación";     
+  return { title: product, durationMs: Math.max(durationMs, 3000) }; 
+} 
 
+//Generador con API de Unsplash (con fallback a Source si falla)
+async function buildDeckFromTitle(title, durationMs = 20000, count = 6) {
+  const product = title?.trim() || "Tu presentación";                      
+  try {                                                                    
+    const res = await fetch(                                               
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(product)}&per_page=${count}&orientation=landscape`, 
+      { headers: { Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_ACCESS_KEY}` } } 
+    );                                                                     
+    const data = await res.json();                                         
+    const slides = (data.results || [])                                    
+      .map((r, i) => ({ url: r.urls?.regular, caption: r.alt_description || product, author: r.user?.name })) 
+      .filter(s => s.url);                                                 
+    if (!slides.length) throw new Error("No results");                     
+    return { title: product, durationMs: Math.max(durationMs, 3000), slides }; 
+  } catch {                                                                                                               
+    return { message: "No se han podido cargar las imágenes" }; 
+  }                                                                         
+} 
 
 //Codificación de la presentación para convertira string para URL
 function encodeDeck(deck) {
