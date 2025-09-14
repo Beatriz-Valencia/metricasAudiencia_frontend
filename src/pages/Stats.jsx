@@ -14,7 +14,8 @@ export default function Stats() {
   const m = getMetrics(id);
 
   return (
-    <Card>
+    <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
+    <Card style={{width:"100%", maxWidth:720}}>
       <Typography.Title level={2} style={{ marginBottom: 16 }}>
         Métricas
       </Typography.Title>
@@ -29,6 +30,7 @@ export default function Stats() {
           <Statistic title="Número de veces detenida" value={m.stops} />
         </Card>
       </Space>
+      
 
       <div style={{ marginTop: 16 }}>
         <Link to={`/v/${id}?d=${encodeURIComponent(d)}`}>
@@ -44,6 +46,7 @@ export default function Stats() {
         </Button>
       </div>
     </Card>
+    </div>
   );
 }
 /* Link to = Lleva de vuelta al visor de ese id, reinyectando el parámetro d (codificado

@@ -18,30 +18,28 @@ async function onPublish(){
     //añade una query param d, con el contenido de d, codificado encodeURIComponent para que sea seguro en URL aunque contenga espacios, comillas
   
 }
-
 return (
-    <Card>
-        
-        <Space direction="vertical" size="large" style={{width: "100%", maxWidth: 640}}>
-            <Typography.Title level={2}>Crear presentación</Typography.Title>
-            <Typography.Paragraph type="secondary">
-                Mide cómo tu audiencia interactua tu presentación
-            </Typography.Paragraph>
-            
+    <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
+      <Card style={{ width: "100%", maxWidth: 640 }}>
+        <Space direction="vertical" size="large" style={{ width: "100%" }}>
+          <Typography.Title level={2}>Crear presentación</Typography.Title>
+          <Typography.Paragraph type="secondary">
+            Mide cómo tu audiencia interactua tu presentación
+          </Typography.Paragraph>
 
-            <Input.TextArea
-                rows={4}
-                placeholder="Título de la presentación..."
-                value={text}
-                onChange={(e)=>setText(e.target.value)}
-                />
-            <Space.Compact>
+          <Input.TextArea
+            rows={4}
+            placeholder="Título de la presentación..."
+            value={text}
+            onChange={(e)=>setText(e.target.value)}
+          />
+          <Space.Compact>
             <Button type="primary" className="lime" icon={<RocketOutlined/>} onClick={onPublish}>
-            Crear presentación
+              Crear presentación
             </Button>
-            </Space.Compact>
+          </Space.Compact>
         </Space>
-        
-    </Card>
-)
+      </Card>
+    </div>
+  );
 }
