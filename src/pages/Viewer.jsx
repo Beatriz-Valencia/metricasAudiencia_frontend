@@ -101,7 +101,6 @@ export default function Viewer() {
   useEffect(() => () => clearT(), []); //limpieza al desmontar el componente
 
   useEffect(() => {
-    // 🟡
     if (deck && !playing && !paused && !ended) start();
     return () => clearT();
   }, [d]);
@@ -121,6 +120,7 @@ export default function Viewer() {
 
   return (
     <Space direction="vertical" size="large" style={{ width: "100%" }}>
+      <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
       <PlayerCard title={deck.title} />
       {/*  Muestra la imagen actual si hay slides */}
       {slides[current] && (
@@ -156,6 +156,7 @@ export default function Viewer() {
           Ver métricas
         </Button>
       </Space>
+      </div>
     </Space>
   );
 }

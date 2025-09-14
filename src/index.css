@@ -16,9 +16,7 @@ body,
 }
 
 body {
-   min-height: 100vh; 
-   align-items: center; 
-   justify-content: center; 
+
   margin: 0;
   color: var(--fg);
   background: var(--bg);
@@ -91,10 +89,9 @@ a:hover {
 }
 
 .player-box {
-   min-height: 100vh; 
   border-radius: 18px;
   background-color: var(--bg);
-  min-height: 300px;
+  min-height: 500px;
   display: flex;
   align-items: center;
   justify-content: center;
