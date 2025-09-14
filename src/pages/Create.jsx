@@ -21,11 +21,13 @@ async function onPublish(){
 
 return (
     <Card>
-        <Space direction="vertical" size="large" style={{width: "100%"}}>
+        <div style = {{minHeight: "100vh", display:"flex", justifyContent:"center", alignItem:"center", padding:24}}>
+        <Space direction="vertical" size="large" style={{width: "100%", maxWidth: 640}}>
             <Typography.Title level={2}>Crear presentación</Typography.Title>
             <Typography.Paragraph type="secondary">
                 Mide cómo tu audiencia interactua tu presentación
             </Typography.Paragraph>
+            
 
             <Input.TextArea
                 rows={4}
@@ -39,6 +41,7 @@ return (
             </Button>
             </Space.Compact>
         </Space>
+        </div>
     </Card>
 )
 }

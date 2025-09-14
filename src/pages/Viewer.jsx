@@ -1,12 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"; //usamos useRef para referencias mutables como tiempo restante, timeout
 import { useLocation, useParams, Link, useNavigate } from "react-router-dom"; //useLocation lee params de ruta id
 import { Space, Button } from "antd";
-import {
-  PlayCircleOutlined,
-  PauseCircleOutlined,
-  StopOutlined,
-  BarChartOutlined,
-} from "@ant-design/icons";
 import PlayerCard from "../components/PlayerCard.jsx";
 import { useHelpers } from "../helpers-context.js"; //Hook propio que expone utilidades como decodificar y contar eventos
 
@@ -108,17 +102,16 @@ export default function Viewer() {
 
   useEffect(() => {
     // 🟡
-    if (deck && !playing && !paused && !ended) start(); 
-    return () => clearT(); 
-  }, [d]); 
+    if (deck && !playing && !paused && !ended) start();
+    return () => clearT();
+  }, [d]);
 
-  // RENDER dentro del componente 
+  // RENDER dentro del componente
   if (!deck) {
-    
     return (
       <Space direction="vertical" size="large" style={{ width: "100%" }}>
         {" "}
-        <PlayerCard title="Deck inválido" /> 
+        <PlayerCard title="Deck inválido" />
         <Link to="/">
           <Button>Volver</Button>
         </Link>{" "}
@@ -130,7 +123,7 @@ export default function Viewer() {
     <Space direction="vertical" size="large" style={{ width: "100%" }}>
       <PlayerCard title={deck.title} />
       {/*  Muestra la imagen actual si hay slides */}
-      {slides[current] && ( 
+      {slides[current] && (
         <img
           src={slides[current].url}
           alt={slides[current].caption}
@@ -147,31 +140,19 @@ export default function Viewer() {
           <Button
             type="primary"
             className="lime"
-            icon={<PlayCircleOutlined />}
             onClick={start}
           >
             Reproducir
           </Button>
         )}
-        {playing && !paused && (
-          <Button icon={<PauseCircleOutlined />} onClick={pause}>
-            Pausar
-          </Button>
-        )}
-        {playing && paused && (
-          <Button icon={<PlayCircleOutlined />} onClick={resume}>
-            Reanudar
-          </Button>
-        )}
+        {playing && !paused && <Button onClick={pause}>Pausar</Button>}
+        {playing && paused && <Button onClick={resume}>Reanudar</Button>}
         {playing && (
-          <Button danger icon={<StopOutlined />} onClick={stop}>
+          <Button danger onClick={stop}>
             Detener
           </Button>
         )}
-        <Button
-          icon={<BarChartOutlined />}
-          onClick={() => nav(`/stats/${id}?d=${encodeURIComponent(d)}`)}
-        >
+        <Button onClick={() => nav(`/stats/${id}?d=${encodeURIComponent(d)}`)}>
           Ver métricas
         </Button>
       </Space>
