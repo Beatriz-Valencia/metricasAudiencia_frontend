@@ -108,33 +108,29 @@ export default function Viewer() {
 
   useEffect(() => {
     // 🟡
-    if (deck && !playing && !paused && !ended) start(); // 🟡
-    return () => clearT(); // 🟡
-  }, [d]); // 🟡
+    if (deck && !playing && !paused && !ended) start(); 
+    return () => clearT(); 
+  }, [d]); 
 
-  // 🟡 RENDER dentro del componente (antes estaba fuera y rompía)
+  // RENDER dentro del componente 
   if (!deck) {
-    // 🟡
+    
     return (
-      // 🟡
       <Space direction="vertical" size="large" style={{ width: "100%" }}>
         {" "}
-        {/* 🟡 */}
-        <PlayerCard title="Deck inválido" /> {/* 🟡 */}
+        <PlayerCard title="Deck inválido" /> 
         <Link to="/">
           <Button>Volver</Button>
         </Link>{" "}
-        {/* 🟡 */}
       </Space>
     );
   }
 
   return (
-    // 🟡
     <Space direction="vertical" size="large" style={{ width: "100%" }}>
       <PlayerCard title={deck.title} />
-      {/* 🟡 Muestra la imagen actual si hay slides */}
-      {slides[current] && ( // 🟡
+      {/*  Muestra la imagen actual si hay slides */}
+      {slides[current] && ( 
         <img
           src={slides[current].url}
           alt={slides[current].caption}
@@ -146,7 +142,6 @@ export default function Viewer() {
           }}
         />
       )}{" "}
-      {/* 🟡 */}
       <Space>
         {!playing && !ended && (
           <Button

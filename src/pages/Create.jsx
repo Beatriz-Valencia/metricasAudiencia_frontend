@@ -14,7 +14,6 @@ async function onPublish(){
     const deck = await buildDeckFromTitle(text, ms);
     const d = encodeDeck(deck)
     const id = crypto.randomUUID(); //usa API nativa del navegador. Llama a randomUUID(), que genera un identificador único aleatorio
-    message.success("Presentación generada");
     nav(`/v/${id}?d=${encodeURIComponent(d)}`); //redirige navegación a una ruta que incluye el UUID generado com oparte de la URL.
     //añade una query param d, con el contenido de d, codificado encodeURIComponent para que sea seguro en URL aunque contenga espacios, comillas
   
@@ -25,7 +24,7 @@ return (
         <Space direction="vertical" size="large" style={{width: "100%"}}>
             <Typography.Title level={2}>Crear presentación</Typography.Title>
             <Typography.Paragraph type="secondary">
-                Reproducción Automática con opciones Pausa y Detener
+                Mide cómo tu audiencia interactua tu presentación
             </Typography.Paragraph>
 
             <Input.TextArea
@@ -36,7 +35,7 @@ return (
                 />
             <Space.Compact>
             <Button type="primary" className="lime" icon={<RocketOutlined/>} onClick={onPublish}>
-            Publicar y abrir
+            Crear presentación
             </Button>
             </Space.Compact>
         </Space>

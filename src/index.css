@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,4 +65,110 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+
+
+/* Vidext-like: lime + black + white */
+:root {
+  --bg: #0a0a0a;
+  --fg: #fff;
+  --muted: rgba(255, 255, 255, .64);
+  --card: #121212;
+  --line: #1e1e1e;
+  --accent: #B9FF66;
+  --accent-ink: #0a0a0a;
+}
+
+/* * {
+  box-sizing: border-box
+} */
+
+html,
+body,
+#root {
+  height: 100%
+}
+
+body {
+  margin: 0;
+  color: var(--fg);
+  background: var(--bg);
+  font-family: Inter, ui-sans-serif, system-ui, Arial
+}
+
+h1,
+h2,
+h3 {
+  font-family: Sora, Inter, ui-sans-serif, system-ui, Arial
+}
+
+a {
+  color: #fff;
+  text-decoration: none
+}
+
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px
+}
+
+/* AntD oscuro */
+.ant-card {
+  background: var(--card) !important;
+  border: 1px solid var(--line) !important;
+}
+
+.ant-typography-secondary {
+  color: var(--muted) !important;
+}
+
+.ant-statistic-title {
+  color: var(--muted) !important;
+}
+
+.ant-statistic-content {
+  color: var(--fg) !important;
+}
+
+.ant-btn-primary.lime {
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: var(--accent-ink) !important;
+  margin: 10px
+}
+
+.ant-btn-primary.lime:hover {
+  filter: brightness(1.05);
+}
+
+/* Player simple */
+.viewer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px
+}
+
+.viewer-head .meta {
+  color: var(--muted);
+  font-size: 14px
+}
+
+.player-box {
+  background: linear-gradient(180deg, #111 0%, #0c0c0c 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
 }
