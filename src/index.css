@@ -9,10 +9,6 @@
   --accent-ink: #0a0a0a;
 }
 
-/* * {
-  box-sizing: border-box
-} */
-
 html,
 body,
 #root {
@@ -20,6 +16,9 @@ body,
 }
 
 body {
+   min-height: 100vh; 
+   align-items: center; 
+   justify-content: center; 
   margin: 0;
   color: var(--fg);
   background: var(--bg);
@@ -92,10 +91,10 @@ a:hover {
 }
 
 .player-box {
-  background: linear-gradient(180deg, #111 0%, #0c0c0c 100%);
-  border: 1px solid var(--line);
+   min-height: 100vh; 
   border-radius: 18px;
-  min-height: 250px;
+  background-color: var(--bg);
+  min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -16,9 +16,6 @@ export default function Stats() {
   return (
     <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
     <Card style={{width:"100%", maxWidth:720}}>
-      <Typography.Title level={2} style={{ marginBottom: 16 }}>
-        Métricas
-      </Typography.Title>
       <Space wrap>
         <Card>
           <Statistic title="Número de veces vista" value={m.views} />
@@ -42,7 +39,7 @@ export default function Stats() {
           icon={<HomeOutlined />}
           onClick={() => nav("/")}
         >
-          Volver al inicoi
+          Volver al inicio
         </Button>
       </div>
     </Card>
