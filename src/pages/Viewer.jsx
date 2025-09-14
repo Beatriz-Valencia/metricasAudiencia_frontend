@@ -120,7 +120,7 @@ export default function Viewer() {
 
   return (
     <Space direction="vertical" size="large" style={{ width: "100%" }}>
-      <div style={{ minHeight: "100vh", display: "grid", placeItems: "center", padding: 24 }}>
+      <div style={{ minHeight: "100vh", display: "grid", placeItems: "center" }}>
       <PlayerCard title={deck.title} />
       {/*  Muestra la imagen actual si hay slides */}
       {slides[current] && (
