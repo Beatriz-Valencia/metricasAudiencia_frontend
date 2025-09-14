@@ -21,7 +21,7 @@ async function onPublish(){
 
 return (
     <Card>
-        <div style = {{minHeight: "100vh", display:"flex", justifyContent:"center", alignItem:"center", padding:24}}>
+        
         <Space direction="vertical" size="large" style={{width: "100%", maxWidth: 640}}>
             <Typography.Title level={2}>Crear presentación</Typography.Title>
             <Typography.Paragraph type="secondary">
@@ -41,7 +41,7 @@ return (
             </Button>
             </Space.Compact>
         </Space>
-        </div>
+        
     </Card>
 )
 }
