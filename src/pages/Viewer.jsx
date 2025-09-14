@@ -40,9 +40,10 @@ export default function Viewer() {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-       if (slideIntervalRef.current) {           //  limpiar también el intervalo de slides
-      clearInterval(slideIntervalRef.current); 
-      slideIntervalRef.current = null;   
+    if (slideIntervalRef.current) {
+      //  limpiar también el intervalo de slides
+      clearInterval(slideIntervalRef.current);
+      slideIntervalRef.current = null;
     }
   }
   //Función utilitaria: si hay timeout, lo limpia y pone el ref a null.
@@ -68,9 +69,9 @@ export default function Viewer() {
     clearT();
     timeoutRef.current = setTimeout(finish, remainingRef.current);
     // Avance automático de slide cada perSlideMs
-    slideIntervalRef.current = setInterval(() => {            
-      setCurrent((prev) => Math.min(slideCount - 1, prev + 1)); 
-    }, perSlideMs);  
+    slideIntervalRef.current = setInterval(() => {
+      setCurrent((prev) => Math.min(slideCount - 1, prev + 1));
+    }, perSlideMs);
   }
 
   function pause() {
@@ -87,12 +88,11 @@ export default function Viewer() {
     setPaused(false);
     startedAtRef.current = Date.now();
     timeoutRef.current = setTimeout(finish, remainingRef.current);
-  // reanudar avance de slides
-    slideIntervalRef.current = setInterval(() => {            
-      setCurrent((prev) => Math.min(slideCount - 1, prev + 1)); 
-    }, perSlideMs);     
-
-}
+    // reanudar avance de slides
+    slideIntervalRef.current = setInterval(() => {
+      setCurrent((prev) => Math.min(slideCount - 1, prev + 1));
+    }, perSlideMs);
+  }
 
   function stop() {
     if (!playing || ended) return;
@@ -105,30 +105,81 @@ export default function Viewer() {
   }
 
   useEffect(() => () => clearT(), []); //limpieza al desmontar el componente
-}
 
-// Auto-inicio opcional al cargar un deck válido
-useEffect(()=>()=>clearT(), []);
+  useEffect(() => {
+    // 🟡
+    if (deck && !playing && !paused && !ended) start(); // 🟡
+    return () => clearT(); // 🟡
+  }, [d]); // 🟡
 
-  if(!deck){
+  // 🟡 RENDER dentro del componente (antes estaba fuera y rompía)
+  if (!deck) {
+    // 🟡
     return (
-      <Space direction="vertical" size="large" style={{ width:"100%" }}>
-        <PlayerCard title="Deck inválido" />
-        <Link to="/"><Button>Volver</Button></Link>
+      // 🟡
+      <Space direction="vertical" size="large" style={{ width: "100%" }}>
+        {" "}
+        {/* 🟡 */}
+        <PlayerCard title="Deck inválido" /> {/* 🟡 */}
+        <Link to="/">
+          <Button>Volver</Button>
+        </Link>{" "}
+        {/* 🟡 */}
       </Space>
     );
   }
 
   return (
-    <Space direction="vertical" size="large" style={{ width:"100%" }}>
+    // 🟡
+    <Space direction="vertical" size="large" style={{ width: "100%" }}>
       <PlayerCard title={deck.title} />
+      {/* 🟡 Muestra la imagen actual si hay slides */}
+      {slides[current] && ( // 🟡
+        <img
+          src={slides[current].url}
+          alt={slides[current].caption}
+          style={{
+            width: "100%",
+            maxHeight: 520,
+            objectFit: "cover",
+            borderRadius: 8,
+          }}
+        />
+      )}{" "}
+      {/* 🟡 */}
       <Space>
-        {!playing && !ended && <Button type="primary" className="lime" icon={<PlayCircleOutlined/>} onClick={start}>Reproducir</Button>}
-        {playing && !paused && <Button icon={<PauseCircleOutlined/>} onClick={pause}>Pausar</Button>}
-        {playing && paused && <Button icon={<PlayCircleOutlined/>} onClick={resume}>Reanudar</Button>}
-        {playing && <Button danger icon={<StopOutlined/>} onClick={stop}>Detener</Button>}
-        <Button icon={<BarChartOutlined/>} onClick={()=>nav(`/stats/${id}?d=${encodeURIComponent(d)}`)}>Ver métricas</Button>
+        {!playing && !ended && (
+          <Button
+            type="primary"
+            className="lime"
+            icon={<PlayCircleOutlined />}
+            onClick={start}
+          >
+            Reproducir
+          </Button>
+        )}
+        {playing && !paused && (
+          <Button icon={<PauseCircleOutlined />} onClick={pause}>
+            Pausar
+          </Button>
+        )}
+        {playing && paused && (
+          <Button icon={<PlayCircleOutlined />} onClick={resume}>
+            Reanudar
+          </Button>
+        )}
+        {playing && (
+          <Button danger icon={<StopOutlined />} onClick={stop}>
+            Detener
+          </Button>
+        )}
+        <Button
+          icon={<BarChartOutlined />}
+          onClick={() => nav(`/stats/${id}?d=${encodeURIComponent(d)}`)}
+        >
+          Ver métricas
+        </Button>
       </Space>
     </Space>
   );
-
+}
