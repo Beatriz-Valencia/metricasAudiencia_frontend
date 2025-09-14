@@ -40,7 +40,7 @@ export default function Viewer() {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-       if (slideIntervalRef.current) {             limpiar también el intervalo de slides
+       if (slideIntervalRef.current) {           //  limpiar también el intervalo de slides
       clearInterval(slideIntervalRef.current); 
       slideIntervalRef.current = null;   
     }
@@ -108,35 +108,27 @@ export default function Viewer() {
 }
 
 // Auto-inicio opcional al cargar un deck válido
-  useEffect(() => {                     
-    if (deck && !playing && !paused && !ended) start(); // 🟡
-    return () => clearT();               
-  }, [d]);
-  
-  if (!deck) return null; // no pintes nada mientras redirige
+useEffect(()=>()=>clearT(), []);
 
-return (
-  <Space direction="vertical" size="large" style={{ width:"100%" }}>
-    <PlayerCard title={deck.title} />
-    {slides[current] && (
-      <img
-        src={slides[current].url}
-        alt={slides[current].caption}
-        style={{ width: "100%", maxHeight: 520, objectFit: "cover", borderRadius: 8 }}
-      />
-    )}
-    <Space>
-      {!playing && !ended && (
-        <Button type="primary" className="lime" icon={<PlayCircleOutlined/>} onClick={start}>
-          Reproducir
-        </Button>
-      )}
-      {playing && !paused && <Button icon={<PauseCircleOutlined/>} onClick={pause}>Pausar</Button>}
-      {playing && paused && <Button icon={<PlayCircleOutlined/>} onClick={resume}>Reanudar</Button>}
-      {playing && <Button danger icon={<StopOutlined/>} onClick={stop}>Detener</Button>}
-      <Button icon={<BarChartOutlined/>} onClick={()=>nav(`/stats/${id}?d=${encodeURIComponent(d)}`)}>
-        Ver métricas
-      </Button>
+  if(!deck){
+    return (
+      <Space direction="vertical" size="large" style={{ width:"100%" }}>
+        <PlayerCard title="Deck inválido" />
+        <Link to="/"><Button>Volver</Button></Link>
+      </Space>
+    );
+  }
+
+  return (
+    <Space direction="vertical" size="large" style={{ width:"100%" }}>
+      <PlayerCard title={deck.title} />
+      <Space>
+        {!playing && !ended && <Button type="primary" className="lime" icon={<PlayCircleOutlined/>} onClick={start}>Reproducir</Button>}
+        {playing && !paused && <Button icon={<PauseCircleOutlined/>} onClick={pause}>Pausar</Button>}
+        {playing && paused && <Button icon={<PlayCircleOutlined/>} onClick={resume}>Reanudar</Button>}
+        {playing && <Button danger icon={<StopOutlined/>} onClick={stop}>Detener</Button>}
+        <Button icon={<BarChartOutlined/>} onClick={()=>nav(`/stats/${id}?d=${encodeURIComponent(d)}`)}>Ver métricas</Button>
+      </Space>
     </Space>
-  </Space>
-);
+  );
+
