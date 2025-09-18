@@ -39,8 +39,7 @@ async function buildDeckFromTitle(title, durationMs = 20000, count = 6) {
 
 //Codificación de la presentación para convertira string para URL
 function encodeDeck(deck) {
-  //recibe cualquier objeto deck
-  const json = JSON.stringify(deck); //convierte a JSON
+  const json = JSON.stringify(deck); 
   const bytes = new TextEncoder().encode(json); //TextEncoder transforma el string en su representación binaria
   const bin = String.fromCharCode(...bytes); //convierte cada byte en un caracter
   return btoa(bin)
@@ -52,9 +51,9 @@ function encodeDeck(deck) {
       const bin = atob(b64); // Decodifica la cadena Base 64 a un string binario
       const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0)); // Recorre ese string binario para reconstruir un Unit8Array de bytes
       const json = new TextDecoder().decode(bytes); // TextDecoder convierte los bytes UTF-8 a un string JSON
-      return JSON.parse(json); // string → objeto
+      return JSON.parse(json); 
     } catch {
-      return null; // si falla, devuelve null
+      return null; 
     }
   }
 

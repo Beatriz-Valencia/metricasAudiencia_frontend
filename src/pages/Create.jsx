@@ -13,9 +13,9 @@ export default function Create() {
 async function onPublish(){
     const deck = await buildDeckFromTitle(text, ms);
     const d = encodeDeck(deck)
-    const id = crypto.randomUUID(); //usa API nativa del navegador. Llama a randomUUID(), que genera un identificador único aleatorio
-    nav(`/v/${id}?d=${encodeURIComponent(d)}`); //redirige navegación a una ruta que incluye el UUID generado com oparte de la URL.
-    //añade una query param d, con el contenido de d, codificado encodeURIComponent para que sea seguro en URL aunque contenga espacios, comillas
+    const id = crypto.randomUUID(); 
+    nav(`/v/${id}?d=${encodeURIComponent(d)}`); 
+   
   
 }
 return (

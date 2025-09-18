@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"; //usamos useRef para
 import { useLocation, useParams, Link, useNavigate } from "react-router-dom"; //useLocation lee params de ruta id
 import { Space, Button } from "antd";
 import PlayerCard from "../components/PlayerCard.jsx";
-import { useHelpers } from "../helpers-context.js"; //Hook propio que expone utilidades como decodificar y contar eventos
+import { useHelpers } from "../helpers-context.js"; 
 
 export default function Viewer() {
   const { decodeDeckParam, incView, incPause, incStop } = useHelpers(); //extrae de helpers paa decodificar el query param d (objeto deck). Usar métricas y contadores
@@ -13,7 +13,7 @@ export default function Viewer() {
   const deck = d ? decodeDeckParam(d) : null;
 
   const durationMs = deck?.durationMs || 20000;
-  const slides = deck?.slides || []; // ← slides del deck
+  const slides = deck?.slides || []; 
   const slideCount = Math.max(1, slides.length);
   const perSlideMs = Math.max(1000, Math.floor(durationMs / slideCount));
 
@@ -58,8 +58,8 @@ export default function Viewer() {
     setPlaying(true);
     setPaused(false);
     setEnded(false);
-    remainingRef.current = durationMs; //Resetea tiempo restante a duración total.
-    startedAtRef.current = Date.now(); //Registra startedAt.
+    remainingRef.current = durationMs; 
+    startedAtRef.current = Date.now(); 
     clearT();
     timeoutRef.current = setTimeout(finish, remainingRef.current);
     // Avance automático de slide cada perSlideMs
@@ -71,7 +71,7 @@ export default function Viewer() {
   function pause() {
     if (!playing || paused || ended) return;
     incPause(id);
-    const elapsed = Date.now() - (startedAtRef.current || Date.now()); //Calcula tiempo transcurrido desde startedAt.
+    const elapsed = Date.now() - (startedAtRef.current || Date.now()); 
     remainingRef.current = Math.max(0, remainingRef.current - elapsed); //Resta lo transcurrido al tiempo restante (con Math.max por seguridad).
     clearT();
     setPaused(true);

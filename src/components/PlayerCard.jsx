@@ -13,4 +13,4 @@ export default function PlayerCard({ title }) {
   );
 }
 
-//tipography.title = tipografía de Ant Design
+

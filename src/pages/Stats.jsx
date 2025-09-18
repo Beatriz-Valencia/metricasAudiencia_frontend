@@ -46,5 +46,4 @@ export default function Stats() {
     </div>
   );
 }
-/* Link to = Lleva de vuelta al visor de ese id, reinyectando el parámetro d (codificado
- con encodeURIComponent para que sea seguro en la URL */
+
