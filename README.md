@@ -78,7 +78,7 @@ Las métricas (views/pauses/stops) se persisten en localStorage mediante helpers
 Si usas React 19 con Ant Design v5, importa al principio de main.jsx:
 
 ```
-import '@ant-design/v5-patch-for-react-19';
+import '@ant-design/v5-patch-for-react-19'
 ```
 ## 👥 Tu Feedback
 Si te ha gustado este proyecto o quieres comentar cualquier mejora conmigo, no dudes en contactarme por email o por Linkedin.
